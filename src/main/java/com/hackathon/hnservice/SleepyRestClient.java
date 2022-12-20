@@ -1,5 +1,6 @@
 package com.hackathon.hnservice;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -7,7 +8,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class SleepyRestClient {
-    private final String url = "http://localhost:8081/sleep";
+    @Value("${sleepy.url}")
+    private String url;
+
     private final RestTemplate restTemplate = new RestTemplate();
 
     public String callSleepy() {
