@@ -40,8 +40,8 @@ public class Controller {
         }
 
         System.out.println("call sleepy");
-        sleepyRestClient.callSleepy();
-        System.out.println("end call sleepy");
+        String res = sleepyRestClient.callSleepy();
+        System.out.printf("end call sleepy, res:%s%n", res);
 
         System.out.printf("End request: %d\n\n", Thread.currentThread().threadId());
         return String.format("Iterations number: %d - done with thread.id %d", iterations, Thread.currentThread().getId());
