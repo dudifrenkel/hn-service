@@ -25,7 +25,7 @@ public class Controller {
     public String test(@RequestParam(required = false) Long iterations) {
         iterations = iterations == null ? DEFAULT_ITERATIONS : iterations;
 
-        System.out.printf("New request: %d%n", Thread.currentThread().threadId());
+        System.out.printf("New request: %d%n", Thread.currentThread().getId());
         try {
             InputStream is = Files.newInputStream(Paths.get("src/main/resources/file.json"));
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
@@ -43,7 +43,7 @@ public class Controller {
         String res = sleepyRestClient.callSleepy();
         System.out.printf("end call sleepy, res:%s%n", res);
 
-        System.out.printf("End request: %d\n\n", Thread.currentThread().threadId());
+        System.out.printf("End request: %d\n\n", Thread.currentThread().getId());
         return String.format("Iterations number: %d - done with thread.id %d", iterations, Thread.currentThread().getId());
     }
 

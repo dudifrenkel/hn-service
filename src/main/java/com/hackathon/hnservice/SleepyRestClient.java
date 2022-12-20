@@ -17,7 +17,7 @@ public class SleepyRestClient {
         try{
             return restTemplate.getForObject(url, String.class);
         }catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "sleepy is not available", e);
+            throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "sleepy is not available", e);
         }
     }
 }
