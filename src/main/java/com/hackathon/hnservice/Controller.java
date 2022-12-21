@@ -28,7 +28,7 @@ public class Controller {
         iterations = iterations == null ? DEFAULT_ITERATIONS : iterations;
         sleep = sleep == null ? DEFAULT_SLEEP : sleep;
 
-        System.out.printf("New request: %s, %d%n", Thread.currentThread(), Thread.currentThread().threadId());
+        System.out.printf("New request: %s, %d%n", Thread.currentThread(), Thread.currentThread().getId());
         try {
             InputStream is = Files.newInputStream(Paths.get("/Users/dudif/IdeaProjects/hn-service/src/main/resources/file.json"));
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
@@ -46,7 +46,7 @@ public class Controller {
         Thread.sleep(sleep);
         System.out.printf("end sleep");
 
-        System.out.printf("End request: %d\n\n", Thread.currentThread().threadId());
+        System.out.printf("End request: %d\n\n", Thread.currentThread().getId());
         return String.format("Iterations number: %d - done with thread.id %d", iterations, Thread.currentThread().getId());
     }
 
@@ -56,7 +56,7 @@ public class Controller {
 
         System.out.printf("New request: %d%n", Thread.currentThread().getId());
         try {
-            InputStream is = Files.newInputStream(Paths.get("src/main/resources/file.json"));
+            InputStream is = Files.newInputStream(Paths.get("/Users/dudif/IdeaProjects/hn-service/src/main/resources/file.json"));
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
 
             for (int i = 0; i < iterations; i++) {
