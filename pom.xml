@@ -16,6 +16,8 @@
 		<java.version>19</java.version>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
 		<tomcat.version>10.1.0-M17</tomcat.version>
+		<native-buildtools.version>0.9.11</native-buildtools.version>
+		<repackage.classifier>exec</repackage.classifier>
 	</properties>
 
 
@@ -86,4 +88,38 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+	<profiles>
+		<profile>
+			<id>native</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.graalvm.buildtools</groupId>
+						<artifactId>native-maven-plugin</artifactId>
+						<extensions>true</extensions>
+						<executions>
+							<execution>
+								<id>build-native</id>
+								<phase>package</phase>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<properties>
+				<native-buildtools.version>0.9.11</native-buildtools.version>
+				<repackage.classifier>exec</repackage.classifier>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.junit.platform</groupId>
+					<artifactId>junit-platform-launcher</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 </project>

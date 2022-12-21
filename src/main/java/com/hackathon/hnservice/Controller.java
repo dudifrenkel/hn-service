@@ -28,7 +28,7 @@ public class Controller {
         iterations = iterations == null ? DEFAULT_ITERATIONS : iterations;
         sleep = sleep == null ? DEFAULT_SLEEP : sleep;
 
-        System.out.printf("New request: %d%n", Thread.currentThread().threadId());
+        System.out.printf("New request: %s, %d%n", Thread.currentThread(), Thread.currentThread().threadId());
         try {
             InputStream is = Files.newInputStream(Paths.get("/Users/dudif/IdeaProjects/hn-service/src/main/resources/file.json"));
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
@@ -54,7 +54,7 @@ public class Controller {
     public String test(@RequestParam(required = false) Long iterations) {
         iterations = iterations == null ? DEFAULT_ITERATIONS : iterations;
 
-        System.out.printf("New request: %d%n", Thread.currentThread().threadId());
+        System.out.printf("New request: %s, %d%n", Thread.currentThread(), Thread.currentThread().threadId());
         try {
             InputStream is = Files.newInputStream(Paths.get("/Users/dudif/IdeaProjects/hn-service/src/main/resources/file.json"));
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
