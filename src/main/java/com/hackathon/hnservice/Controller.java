@@ -1,15 +1,12 @@
 package com.hackathon.hnservice;
 
-import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -39,13 +36,12 @@ public class Controller {
 
         logger.debug(String.format("New request: %s, %d%n", Thread.currentThread(), Thread.currentThread().threadId()));
         try {
-            File is = ResourceUtils.getFile("classpath:file.json");
-            FileInputStream fileInputStream = new FileInputStream(is);
+            InputStream inputStream = new ClassPathResource("file.json").getInputStream();
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
 
             logger.debug("start processing");
             for (int i = 0; i < iterations; i++) {
-                sha256.digest(fileInputStream.readAllBytes());
+                sha256.digest(inputStream.readAllBytes());
             }
             logger.debug("end processing");
         } catch (IOException | NoSuchAlgorithmException e) {
