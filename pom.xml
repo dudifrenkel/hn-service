@@ -70,10 +70,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<image>
-<!--						<jvmArguments>&#45;&#45;enable-preview</jvmArguments>-->
-<!--						<builder>dashaun/builder:tiny</builder>-->
-					</image>
+					<jvmArguments>--enable-preview</jvmArguments>
 				</configuration>
 			</plugin>
 		</plugins>
