@@ -71,6 +71,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<jvmArguments>--enable-preview</jvmArguments>
+					<image>
+						<name>hn-service-vt</name>
+					</image>
 				</configuration>
 			</plugin>
 		</plugins>
