@@ -59,23 +59,26 @@ public class Controller {
     public String test(@RequestParam(required = false) Long iterations) {
         iterations = iterations == null ? DEFAULT_ITERATIONS : iterations;
 
-        System.out.printf("New request: %s, %d%n", Thread.currentThread(), Thread.currentThread().threadId());
+        logger.debug(String.format("New request: %s, %d%n", Thread.currentThread(), Thread.currentThread().threadId()));
         try {
             InputStream is = Files.newInputStream(Paths.get("/Users/dudif/IdeaProjects/hn-service/src/main/resources/file.json"));
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
 
+            logger.debug("start processing");
             for (int i = 0; i < iterations; i++) {
                 sha256.digest(is.readAllBytes());
             }
+
+            logger.debug("end processing");
         } catch (IOException | NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
 
-        System.out.println("call sleepy");
+        logger.debug("call sleepy");
         String res = sleepyRestClient.callSleepy();
-        System.out.printf("end call sleepy, res:%s%n", res);
+        logger.debug(String.format("end call sleepy, res:%s%n", res));
 
-        System.out.printf("End request: %d\n\n", Thread.currentThread().threadId());
+        logger.debug(String.format("End request: %d\n\n", Thread.currentThread().threadId()));
         return String.format("Iterations number: %d - done with thread.id %d", iterations, Thread.currentThread().threadId());
     }
 }
