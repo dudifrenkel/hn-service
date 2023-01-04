@@ -49,7 +49,7 @@
 				<configuration>
 					<jvmArguments>--enable-preview</jvmArguments>
 					<image>
-						<name>hn-service-vt</name>
+						<name>hn-service-eleven</name>
 					</image>
 				</configuration>
 			</plugin>
